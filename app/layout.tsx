@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true, maxImagePreview: "large", maxSnippet: -1 },
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
   icons: {
     icon: [{ url: "/favicon.ico" }, { url: "/icon.svg", type: "image/svg+xml" }],

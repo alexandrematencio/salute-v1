@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { siteConfig, formatAddressOneLine, telLink, mailtoLink } from "@/lib/site-config";
+import { siteConfig, formatAddressOneLine, telLink, mailtoLink, formatOpeningHours, frenchDay } from "@/lib/site-config";
 import { OpenNowIndicator } from "./OpenNowIndicator";
 import { ManageCookiesLink } from "./ManageCookiesLink";
 
@@ -41,13 +41,7 @@ export function Footer() {
             {siteConfig.openingHours.map((d) => (
               <div key={d.day} className="flex justify-between gap-3">
                 <dt>{frenchDay(d.day)}</dt>
-                <dd className="text-right">
-                  {"closed" in d && d.closed
-                    ? "Fermé"
-                    : "reopens" in d && d.reopens
-                      ? `${d.opens}–${d.closes} · ${d.reopens}–${d.closesEvening}`
-                      : `${d.opens}–${d.closes}`}
-                </dd>
+                <dd className="text-right">{formatOpeningHours(d)}</dd>
               </div>
             ))}
           </dl>
@@ -108,15 +102,3 @@ export function Footer() {
   );
 }
 
-function frenchDay(day: string): string {
-  const map: Record<string, string> = {
-    Monday: "Lundi",
-    Tuesday: "Mardi",
-    Wednesday: "Mercredi",
-    Thursday: "Jeudi",
-    Friday: "Vendredi",
-    Saturday: "Samedi",
-    Sunday: "Dimanche",
-  };
-  return map[day] ?? day;
-}

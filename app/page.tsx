@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { siteConfig } from "@/lib/site-config";
+import { siteConfig, formatOpeningHours, frenchDay } from "@/lib/site-config";
 import { buildMetadata } from "@/lib/seo";
 import { products } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
@@ -192,13 +192,7 @@ export default function HomePage() {
               {siteConfig.openingHours.map((d) => (
                 <div key={d.day} className="flex gap-4">
                   <dt className="w-24 font-medium">{frenchDay(d.day)}</dt>
-                  <dd>
-                    {"closed" in d && d.closed
-                      ? "Fermé"
-                      : "reopens" in d && d.reopens
-                        ? `${d.opens}–${d.closes} · ${d.reopens}–${d.closesEvening}`
-                        : `${d.opens}–${d.closes}`}
-                  </dd>
+                  <dd>{formatOpeningHours(d)}</dd>
                 </div>
               ))}
             </dl>
@@ -232,15 +226,3 @@ export default function HomePage() {
   );
 }
 
-function frenchDay(day: string): string {
-  const map: Record<string, string> = {
-    Monday: "Lundi",
-    Tuesday: "Mardi",
-    Wednesday: "Mercredi",
-    Thursday: "Jeudi",
-    Friday: "Vendredi",
-    Saturday: "Samedi",
-    Sunday: "Dimanche",
-  };
-  return map[day] ?? day;
-}

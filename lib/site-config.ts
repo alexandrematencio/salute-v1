@@ -11,6 +11,16 @@
  * valeurs par défaut + structures statiques (SIREN, hébergeur…).
  */
 
+export type OpeningHours =
+  | { day: string; closed: true }
+  | {
+      day: string;
+      opens: string;
+      closes: string;
+      reopens?: string;
+      closesEvening?: string;
+    };
+
 export const siteConfig = {
   name: "Salute!",
   legalName: "Salute! SAS",
@@ -18,7 +28,8 @@ export const siteConfig = {
   description:
     "Épicerie italienne, charcuterie, fromages, pâtes fraîches, focaccia, pizza al taglio et plateaux traiteur — à Villejuif (94800).",
 
-  url: "https://salute-villejuif.fr",
+  // URL de démo (GitHub Pages). À remplacer par https://salute-villejuif.fr en prod.
+  url: "https://alexandrematencio.github.io/salute-v1",
   locale: "fr_FR",
   language: "fr",
 
@@ -52,7 +63,7 @@ export const siteConfig = {
     { day: "Friday", opens: "10:00", closes: "14:00", reopens: "15:30", closesEvening: "19:30" },
     { day: "Saturday", opens: "10:00", closes: "19:30" },
     { day: "Sunday", closed: true },
-  ] as const,
+  ] as OpeningHours[],
 
   socials: {
     facebook: "https://www.facebook.com/profile.php?id=100075890296345",
@@ -111,3 +122,25 @@ export const formatAddressOneLine = () =>
 
 export const telLink = `tel:${siteConfig.nap.phoneE164}`;
 export const mailtoLink = `mailto:${siteConfig.nap.email}`;
+
+/** Formate un jour d'ouverture en string lisible — gère la pause déjeuner. */
+export function formatOpeningHours(day: OpeningHours): string {
+  if ("closed" in day) return "Fermé";
+  if (day.reopens && day.closesEvening) {
+    return `${day.opens}–${day.closes} · ${day.reopens}–${day.closesEvening}`;
+  }
+  return `${day.opens}–${day.closes}`;
+}
+
+export function frenchDay(day: string): string {
+  const map: Record<string, string> = {
+    Monday: "Lundi",
+    Tuesday: "Mardi",
+    Wednesday: "Mercredi",
+    Thursday: "Jeudi",
+    Friday: "Vendredi",
+    Saturday: "Samedi",
+    Sunday: "Dimanche",
+  };
+  return map[day] ?? day;
+}

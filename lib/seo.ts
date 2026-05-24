@@ -55,7 +55,7 @@ export function buildMetadata({
     },
     robots: noIndex
       ? { index: false, follow: false }
-      : { index: true, follow: true, googleBot: { index: true, follow: true, maxImagePreview: "large" } },
+      : { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } },
   };
 }
 
@@ -71,15 +71,18 @@ export function buildMetadata({
  */
 export function foodEstablishmentJsonLd() {
   const openingHours = siteConfig.openingHours
-    .filter((d): d is Extract<typeof d, { opens: string }> => !("closed" in d) || !d.closed)
+    .filter((d) => !("closed" in d))
     .flatMap((d) => {
-      const ranges = [{ opens: d.opens, closes: d.closes }];
-      if ("reopens" in d && d.reopens && d.closesEvening) {
-        ranges.push({ opens: d.reopens, closes: d.closesEvening });
+      const day = d as Exclude<typeof d, { closed: true }>;
+      const ranges: { opens: string; closes: string }[] = [
+        { opens: day.opens, closes: day.closes },
+      ];
+      if (day.reopens && day.closesEvening) {
+        ranges.push({ opens: day.reopens, closes: day.closesEvening });
       }
       return ranges.map((r) => ({
         "@type": "OpeningHoursSpecification",
-        dayOfWeek: `https://schema.org/${d.day}`,
+        dayOfWeek: `https://schema.org/${day.day}`,
         opens: r.opens,
         closes: r.closes,
       }));

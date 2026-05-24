@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site-config";
 
+export const dynamic = "force-static";
+
 /**
  * Sitemap statique de démarrage. Dès que les collections TinaCMS sont peuplées,
  * remplacer le tableau `staticRoutes` par un import du client Tina pour
