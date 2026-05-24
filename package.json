@@ -11,16 +11,19 @@
     "lint": "next lint",
     "tina:build": "tinacms build",
     "tina:dev": "tinacms dev",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf .next out",
+    "predeploy": "npm run clean && npm run build",
+    "deploy": "gh-pages -d out --dotfiles -m \"chore(deploy): publish static export\""
   },
   "dependencies": {
+    "@tinacms/cli": "^1.9.0",
+    "clsx": "^2.1.1",
     "next": "^15.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tinacms": "^2.7.0",
-    "@tinacms/cli": "^1.9.0",
-    "zod": "^3.24.0",
-    "clsx": "^2.1.1"
+    "zod": "^3.24.0"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
@@ -29,6 +32,7 @@
     "autoprefixer": "^10.4.20",
     "eslint": "^9.17.0",
     "eslint-config-next": "^15.1.0",
+    "gh-pages": "^6.3.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.0"
