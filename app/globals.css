@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Respecte explicitement la préférence réduite-mouvement de l'OS. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Focus ring visible — accessibilité WCAG 2.2 */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-salute-terracotta;
+    outline-style: solid;
+  }
+
+  /* Mode sombre — préférence système, ou .dark sur <html> */
+  @media (prefers-color-scheme: dark) {
+    :root:not(.light) {
+      color-scheme: dark;
+    }
+  }
+
+  body {
+    @apply bg-salute-cream text-salute-ink font-sans antialiased;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .dark body {
+    @apply bg-salute-ink text-salute-cream;
+  }
+
+  /* Cibles tactiles minimum 44×44 (WCAG 2.5.5) — appliquer .touch-target sur les contrôles interactifs */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  /* Lien "Aller au contenu principal" — premier élément focusable de chaque page */
+  .skip-to-content {
+    @apply sr-only fixed left-2 top-2 z-50 rounded bg-salute-ink px-4 py-2 text-salute-cream;
+  }
+
+  .skip-to-content:focus {
+    @apply not-sr-only;
+  }
+}
