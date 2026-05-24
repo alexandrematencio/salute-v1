@@ -5,6 +5,7 @@ import { siteConfig, formatOpeningHours, frenchDay } from "@/lib/site-config";
 import { buildMetadata } from "@/lib/seo";
 import { products } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
+import { asset } from "@/lib/asset";
 
 export const metadata: Metadata = buildMetadata({
   title: "Épicerie italienne & Traiteur à Villejuif",
@@ -52,7 +53,7 @@ export default function HomePage() {
 
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-2xl lg:aspect-[5/4]">
             <Image
-              src="/images/brand/hero.png"
+              src={asset("/images/brand/hero.png")}
               alt="Devanture de Salute!, épicerie italienne et traiteur à Villejuif"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
@@ -213,7 +214,7 @@ export default function HomePage() {
           </div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
             <Image
-              src="/images/brand/storefront.png"
+              src={asset("/images/brand/storefront.png")}
               alt={`Devanture de la boutique Salute! au ${siteConfig.nap.street}`}
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"

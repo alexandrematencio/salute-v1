@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { buildMetadata, breadcrumbJsonLd, jsonLdScript } from "@/lib/seo";
+import { asset } from "@/lib/asset";
 
 export const metadata: Metadata = buildMetadata({
   title: "Charcuterie italienne de Gombitelli — Salamis toscans, Mortadella",
@@ -58,7 +59,7 @@ export default function CharcuteriePage() {
 
         <figure className="mt-10 overflow-hidden rounded-2xl">
           <Image
-            src="/images/products/charcuterie.jpg"
+            src={asset("/images/products/charcuterie.jpg")}
             alt="Plateau de salamis toscans de Gombitelli et mortadella italienne"
             width={1600}
             height={1000}
@@ -108,7 +109,7 @@ export default function CharcuteriePage() {
           <aside className="space-y-6">
             <div className="overflow-hidden rounded-xl border border-salute-stone/20">
               <Image
-                src="/images/charcuterie/01.jpg"
+                src={asset("/images/charcuterie/01.jpg")}
                 alt="Salami toscan affiné, tranché"
                 width={576}
                 height={1024}
@@ -117,7 +118,7 @@ export default function CharcuteriePage() {
             </div>
             <div className="overflow-hidden rounded-xl border border-salute-stone/20">
               <Image
-                src="/images/charcuterie/02.jpg"
+                src={asset("/images/charcuterie/02.jpg")}
                 alt="Mortadella di Gombitelli en tranches"
                 width={576}
                 height={1024}
@@ -126,7 +127,7 @@ export default function CharcuteriePage() {
             </div>
             <div className="overflow-hidden rounded-xl border border-salute-stone/20">
               <Image
-                src="/images/charcuterie/03.jpg"
+                src={asset("/images/charcuterie/03.jpg")}
                 alt="Charcuterie italienne artisanale"
                 width={576}
                 height={1024}

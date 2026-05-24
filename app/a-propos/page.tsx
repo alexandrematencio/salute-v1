@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { buildMetadata, breadcrumbJsonLd, jsonLdScript } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
+import { asset } from "@/lib/asset";
 
 export const metadata: Metadata = buildMetadata({
   title: "Notre histoire — Une passion italienne à Villejuif",
@@ -46,7 +47,7 @@ export default function AProposPage() {
 
         <figure className="mt-10 overflow-hidden rounded-2xl">
           <Image
-            src="/images/brand/storefront.png"
+            src={asset("/images/brand/storefront.png")}
             alt="La devanture de Salute! au 59 rue Jean-Jaurès à Villejuif"
             width={1600}
             height={1000}

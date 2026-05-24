@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { buildMetadata, breadcrumbJsonLd, jsonLdScript } from "@/lib/seo";
+import { asset } from "@/lib/asset";
 
 export const metadata: Metadata = buildMetadata({
   title: "Carte & Formules midi à Villejuif — Pizza, pâtes, plateaux",
@@ -81,7 +82,7 @@ export default function CartePage() {
 
         <figure className="mt-10 overflow-hidden rounded-2xl">
           <Image
-            src="/images/products/pizza-al-taglio.jpg"
+            src={asset("/images/products/pizza-al-taglio.jpg")}
             alt="Pizza al taglio à la romaine, cuite chez Salute!"
             width={1600}
             height={1000}

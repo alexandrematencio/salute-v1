@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { buildMetadata, breadcrumbJsonLd, jsonLdScript } from "@/lib/seo";
+import { asset } from "@/lib/asset";
 
 export const metadata: Metadata = buildMetadata({
   title: "Traiteur italien à Villejuif — Plateaux, buffets, événements",
@@ -79,7 +80,7 @@ export default function TraiteurPage() {
               <div className={`order-2 ${idx % 2 === 1 ? "lg:order-1" : "lg:order-2"}`}>
                 <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
                   <Image
-                    src={s.image}
+                    src={asset(s.image)}
                     alt={s.alt}
                     fill
                     sizes="(min-width: 1024px) 50vw, 100vw"

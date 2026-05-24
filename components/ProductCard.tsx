@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { Product } from "@/lib/products";
+import { asset } from "@/lib/asset";
 
 /**
  * Carte produit utilisée sur la home et la page /epicerie.
@@ -11,7 +12,7 @@ export function ProductCard({ product, priority = false }: { product: Product; p
     <article className="group overflow-hidden rounded-xl border border-salute-stone/15 bg-white transition hover:border-salute-terracotta dark:bg-salute-ink/40">
       <div className="relative aspect-[4/3] overflow-hidden bg-salute-stone/10">
         <Image
-          src={product.image}
+          src={asset(product.image)}
           alt={product.imageAlt}
           fill
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
